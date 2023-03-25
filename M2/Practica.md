@@ -1,7 +1,6 @@
 # Ejercicios M2
 
 ## Variables, operadores y tipo de datos. Especificadores de formato. Entrada y salida estándar
-<br>
 
 ### 1. Indicar qué es lo que se almacena en cada una de las variables indicadas a continuación, si se realizan las operaciones que se indicanen forma consecutiva:
 
@@ -62,6 +61,7 @@ float m=2.5, n=5.4, r, s;
         </tr>
     </tbody>
 </table>
+<br>
 
 ### 2. Indicar qué valor se almacena en cada variable de la izquierda de cada asignación, siendo:
 
@@ -114,7 +114,7 @@ int x = 2, y = 3;
         </tr>
     </tbody>
 </table>
-
+<br>
 
 ### 3. Indicar cuál es la salida por pantalla para cada sentencia printf, siendo:
 
