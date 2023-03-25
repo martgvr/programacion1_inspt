@@ -1,0 +1,10 @@
+# Ignore all
+*
+
+# Folders
+!/M2/
+
+# Files
+!*.c
+!*.md
+!.gitignore
