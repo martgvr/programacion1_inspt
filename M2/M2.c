@@ -1,16 +1,15 @@
 #include <stdio.h>
 
 int main() {
+    int a;
+    float b;
+    char c;
 
-    int a = 5, e = 5 > 1;
-
-    float b = 13.546;
-
-    char c = 'A';
-    char d = 'a';
+    printf("ingresá un valor: ");
+    scanf("%c", &c);
 
     printf("\n");
-    printf("d vale %X", d);
+    printf("d vale %c", c);
 
     return 0;
 }

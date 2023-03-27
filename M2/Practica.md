@@ -249,3 +249,39 @@ char d = 'a';
         </tr>
     </tbody>
 </table>
+
+### 4. Indicar qué queda almacenado en la variable con la que se ingresan datos en cada caso, si se han definido las variables de la siguiente forma:
+
+```
+int a;
+float b;
+char c;
+```
+
+1) scanf("%d", &a); | un entero (scan correcto)
+2) scanf("%f", &a); | 0.0 (scan incorrecto)
+3) scanf("%c", &a); | el hexa del numero ingresado
+
+<br>
+
+4) scanf("%d", &b); | la parte entera
+5) scanf("%f", &b); | un float (scan correcto)
+6) scanf("%c", &b); | el hexa del float ingresado? no muestra nada
+
+<br>
+
+7) scanf("%d", &c); | muestra unicamente enteros ingresados
+8) scanf("%f", &c); | devuelve 0.0
+9) scanf("%c", &c); | muestra caracteres guardados y enteros (scan correcto)
+
+### 5. ¿Cuáles de los siguientes son tipos válidos?
+
+1) unsigned char V parece existir
+2) long char X
+3) unsigned float X
+4) double char X
+5) signed long X
+6) unsigned short X
+7) signed long int V
+8) long double V
+9) long bool X
