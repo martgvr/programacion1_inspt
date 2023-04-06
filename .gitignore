@@ -3,6 +3,7 @@
 
 # Folders
 !/M2/
+!/M3/
 
 # Files
 !*.c
