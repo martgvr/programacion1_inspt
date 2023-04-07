@@ -2,10 +2,12 @@
 *
 
 # Folders
+!/PSeInt/
 !/M2/
 !/M3/
 
 # Files
 !*.c
 !*.md
+!*.psc
 !.gitignore
