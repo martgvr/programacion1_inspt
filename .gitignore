@@ -1,16 +1,9 @@
 # Ignore all
 *
 
-# Folders
-!/PSeInt/
-!/PSeInt/3-4/
-!/PSeInt/10-4/
-
-!/M2/
-!/M3/
-
 # Files
 !*.c
 !*.md
 !*.psc
 !.gitignore
+!*/
