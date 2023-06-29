@@ -14,3 +14,15 @@ int main() {
 
     return 0;
 }
+
+int getDividers(int num) {
+    int acumulador = 0;
+
+    for (int i = 1; i <= num; i++) {
+        if ((float)(num % i) == 0) {
+            acumulador++;
+        }
+    }
+
+    return acumulador;
+}
