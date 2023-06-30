@@ -1,9 +1,6 @@
-// Dados los tiempos de partida y de llegada de un movil (h/m/s) y el valor de la distancia
-// recorrida (metros), la computadora muestra el valor de la velocidad media (kmh)
-
 #include <stdio.h>
+#include "./utilities/fns.h"
 
-void askData(int * var, char * string);
 int getAverageSpeed(int sHours, int sMins, int sSecs, int eHours, int eMins, int endSeconds);
 
 int main() {
@@ -24,17 +21,6 @@ int main() {
     printf("usted ingreso: %u\n", startHours);
 
     return 0;
-}
-
-void askData(int * var, char * string) {
-    int input;
-
-    do {
-        printf("Ingrese %s: ", string);
-        scanf("%d", &input);
-    } while (input < 0);
-
-    *var = input;
 }
 
 int getAverageSpeed(int sHours, int sMins, int sSecs, int eHours, int eMins, int endSeconds) {
