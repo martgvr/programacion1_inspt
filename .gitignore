@@ -7,3 +7,4 @@
 !*.psc
 !.gitignore
 !*/
+!*.h
