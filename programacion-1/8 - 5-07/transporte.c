@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include <stdbool.h>
 
 #include "./utilities/fns.h"
 
@@ -11,8 +10,8 @@
 uint8_t menu();
 
 // these functions receives a pointer's array and returns a bool [true/false]
-bool loadReserve(int * arraysList[], uint8_t qArrays, uint8_t length);
-bool deleteReserved(int * arraysList[], uint8_t qArrays, uint8_t length);
+void loadReserve(int * arraysList[], uint8_t qArrays, uint8_t length);
+void deleteReserved(int * arraysList[], uint8_t qArrays, uint8_t length);
 
 void pause();
 void showFreeReserved(int * arraysList[], uint8_t qArrays, uint8_t length);
@@ -23,7 +22,9 @@ int main() {
     uint32_t seatsRow2[VEC_SIZE] = { 0, 0, 0, 0, 0 };
 
     int * pointersArray[] = { seatsRow1, seatsRow2 };
-    uint8_t option;
+
+    // option should be setted as static to maintain the value
+    static uint8_t option;
 
     do {
         option = menu();
@@ -32,12 +33,15 @@ int main() {
             case 1:
                 loadReserve(pointersArray, 2, VEC_SIZE);
                 break;
+
             case 2:
                 deleteReserved(pointersArray, 2, VEC_SIZE);
                 break;
+
             case 3:
                 showFreeReserved(pointersArray, 2, VEC_SIZE);
                 break;
+
             case 4:
                 printf("\nGracias por utilizar nuestro sistema de reservas!\n\n");
                 break;
@@ -52,14 +56,14 @@ uint8_t menu() {
 
     do {
         printf("\nMenu de opciones (Reservas)\n");
-        printf("\n\t [ 1 ] - Ingresar dato de reserva");
-        printf("\n\t [ 2 ] - Dar de baja una reserva");
-        printf("\n\t [ 3 ] - Mostrar asientos libres y reservados");
-        printf("\n\t [ 4 ] - Salir\n");
+        printf("\n\t[ 1 ] - Ingresar dato de reserva");
+        printf("\n\t[ 2 ] - Dar de baja una reserva");
+        printf("\n\t[ 3 ] - Mostrar asientos libres y reservados");
+        printf("\n\t[ 4 ] - Salir\n");
 
         if (option != -1) { printf("\n\t ERROR! Solo se permiten opciones entre 1 y 4"); }
 
-        printf("\n\t Ingrese una opcion: ");
+        printf("\n\tIngrese una opcion: ");
 
         scanf("%d", &option);
     } while ((option < 1) || (option > 4));
@@ -67,16 +71,30 @@ uint8_t menu() {
     return option;
 }
 
-bool loadReserve(int * arraysList[], uint8_t qArrays, uint8_t length) {
-    
+void loadReserve(int * arraysList[], uint8_t qArrays, uint8_t length) {
+    uint8_t rowSelected, spaceSelected;
 
-    return true;
+    do {
+        printf("\n\t\t> Ingrese el numero de fila de asientos (1 a %d): ", qArrays);
+        scanf("%d", &rowSelected);
+
+        if ((rowSelected < 0) || (rowSelected > qArrays)) {
+            printf("\n\t\tERROR! Solo se permiten numeros entre 1 y %d", qArrays);
+        }
+    } while ((rowSelected < 0) || (rowSelected > qArrays));
+
+    do {
+        printf("\n\t\t> Ingrese el espacio libre en esa fila (1 a %d): ", VEC_SIZE);
+        scanf("%d", &spaceSelected);
+
+        if ((spaceSelected < 0) || (spaceSelected > VEC_SIZE)) {
+            printf("\n\t\tERROR! Solo se permiten numeros entre 1 y %d", VEC_SIZE);
+        }
+    } while ((spaceSelected < 0) || (spaceSelected > VEC_SIZE));
 }
 
-bool deleteReserved(int * arraysList[], uint8_t qArrays, uint8_t length) {
+void deleteReserved(int * arraysList[], uint8_t qArrays, uint8_t length) {
 
-
-    return true;
 }
 
 void pause() {
