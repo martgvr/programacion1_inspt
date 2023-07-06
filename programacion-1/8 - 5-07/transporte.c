@@ -9,21 +9,19 @@
 // 8 bits = [0 - 255] return
 uint8_t menu();
 
-// these functions receives a pointer's array and returns a bool [true/false]
+void pause();
 void loadReserve(int * arraysList[], uint8_t qArrays, uint8_t length);
 void deleteReserved(int * arraysList[], uint8_t qArrays, uint8_t length);
-
-void pause();
 void showFreeReserved(int * arraysList[], uint8_t qArrays, uint8_t length);
 
 int main() {
-    // 32 bits for identity document storage | [0 - 99.999.999] needed
-    uint32_t seatsRow1[VEC_SIZE] = { 0, 1, 0, 0, 0 };
-    uint32_t seatsRow2[VEC_SIZE] = { 0, 0, 0, 0, 0 };
+    // 32 bits for identity document storage [0 - 99.999.999] needed
+    uint32_t seatsRow1[VEC_SIZE] = { 12345678, 12345678, 0, 0, 0 };
+    uint32_t seatsRow2[VEC_SIZE] = { 12345678, 0, 0, 0, 0 };
 
     int * pointersArray[] = { seatsRow1, seatsRow2 };
 
-    // option should be setted as static to maintain the value
+    // option will be setted as static to maintain the value
     static uint8_t option;
 
     do {
@@ -33,15 +31,12 @@ int main() {
             case 1:
                 loadReserve(pointersArray, 2, VEC_SIZE);
                 break;
-
             case 2:
                 deleteReserved(pointersArray, 2, VEC_SIZE);
                 break;
-
             case 3:
                 showFreeReserved(pointersArray, 2, VEC_SIZE);
                 break;
-
             case 4:
                 printf("\nGracias por utilizar nuestro sistema de reservas!\n\n");
                 break;
@@ -62,7 +57,7 @@ uint8_t menu() {
         printf("\n\t[ 4 ] - Salir\n");
 
         if (option != -1) { printf("\n\t ERROR! Solo se permiten opciones entre 1 y 4"); }
-
+        
         printf("\n\tIngrese una opcion: ");
 
         scanf("%d", &option);
@@ -72,12 +67,12 @@ uint8_t menu() {
 }
 
 void loadReserve(int * arraysList[], uint8_t qArrays, uint8_t length) {
-    uint8_t rowSelected, spaceSelected;
+    uint8_t rowSelected, spaceSelected, input;
+    uint32_t dni;
 
     do {
         printf("\n\t\t> Ingrese el numero de fila de asientos (1 a %d): ", qArrays);
-        scanf("%d", &rowSelected);
-
+        scanf("%hhu", &rowSelected);
         if ((rowSelected < 0) || (rowSelected > qArrays)) {
             printf("\n\t\tERROR! Solo se permiten numeros entre 1 y %d", qArrays);
         }
@@ -85,16 +80,31 @@ void loadReserve(int * arraysList[], uint8_t qArrays, uint8_t length) {
 
     do {
         printf("\n\t\t> Ingrese el espacio libre en esa fila (1 a %d): ", VEC_SIZE);
-        scanf("%d", &spaceSelected);
-
+        scanf("%hhu", &spaceSelected);
         if ((spaceSelected < 0) || (spaceSelected > VEC_SIZE)) {
             printf("\n\t\tERROR! Solo se permiten numeros entre 1 y %d", VEC_SIZE);
         }
     } while ((spaceSelected < 0) || (spaceSelected > VEC_SIZE));
+
+    if (arraysList[rowSelected - 1][spaceSelected - 1] == 0) {
+        printf("\n\t\tEl espacio %d de la fila %d se encuentra disponible.", rowSelected, spaceSelected);
+        printf("\n\t\tDesea reservarlo? [1 = SI | 0 = NO]: ");
+        scanf("%hhu", &input);
+        
+        if (input == 1) {
+            printf("\n\t\tIngrese su numero de documento: ");
+            scanf("%u", &dni);
+            arraysList[rowSelected - 1][spaceSelected - 1] = dni;
+            printf("\n\t\tReserva realizada con exito!\n");
+            pause();
+        }
+    } else {
+        printf("\n\t\tERROR! El espacio %d de la fila %d se encuentra ocupado. \n", rowSelected, spaceSelected);
+    }
 }
 
 void deleteReserved(int * arraysList[], uint8_t qArrays, uint8_t length) {
-
+    printArray(arraysList[0], VEC_SIZE);
 }
 
 void pause() {
@@ -104,11 +114,14 @@ void pause() {
 }
 
 void showFreeReserved(int * arraysList[], uint8_t qArrays, uint8_t length) {
+    uint8_t status = 0;
+
     for (int i = 0; i < qArrays; i++) {
-        printf("- Fila de asientos %d -\n\n", i + 1);
+        if (i == 0) { printf("\n"); }
+        printf("\t> Fila de asientos %d\n\n", i + 1);
         for (int j = 0; j < length; j++) {
-            uint8_t status = arraysList[i][j];
-            printf("[ Espacio %d ] - %s\n", j, status == 0 ? "Libre" : "Ocupado");
+            status = arraysList[i][j];
+            printf("\t\t[ Espacio %d ] - %s\n", j, status == 0 ? "Libre" : "Ocupado");
         }
         printf("\n");
     }
