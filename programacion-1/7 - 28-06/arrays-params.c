@@ -18,9 +18,9 @@ int main() {
 
 void printArrays(int * arraysList[]) {
     for (int i = 0; i < 3; i++) {
-        // size_t arraySize = sizeof(arraysList[i]) / sizeof(arraysList[i][0]);
-        // printf("Tamanio: %d\n", sizeof(arraysList[i]));
-
+        size_t arraySize = sizeof(arraysList[i]) / sizeof(arraysList[i][0]);
+        printf("Tamanio: %d\n", sizeof(arraysList[i]));
+        
         for (int j = 0; j < 10; j++) {
             printf("[ %d ] - %d\n", j, arraysList[i][j]);
         }

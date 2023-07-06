@@ -1,12 +1,14 @@
 #include <time.h>
 #include <stdio.h>
+#include <stdint.h>
+
 #include "./utilities/fns.h"
 
 #define VEC_SIZE 20
 #define MIN_RAND 1
 #define MAX_RAND 6
 
-#define uint unsigned int
+typedef unsigned int uint;
 
 void fillRandDiceArray(uint array[], uint length);
 void getRepeated(uint numsArray[], uint sumArray[], uint length);
